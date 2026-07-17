@@ -3,7 +3,8 @@ name: Deploy Quartz site to GitHub Pages
 on:
   push:
     branches:
-      - v5
+      - master
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,10 +18,40 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v6
+      # Checkout Quartz 網站 repo
+      - name: Checkout website repository
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
+      # Checkout 私人 Obsidian Vault
+      - name: Checkout private Fayrpo vault
+        uses: actions/checkout@v6
+        with:
+          repository: fairylam0328/Fayrpo
+          ref: master
+          token: ${{ secrets.WEBSITE_PAT }}
+          path: vault
+
+      # 用 Vault 內容取代 Quartz content
+      - name: Copy vault into Quartz content
+        shell: bash
+        run: |
+          rm -rf content
+          mkdir -p content
+
+          rsync -av \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.obsidian/' \
+            --exclude='.trash/' \
+            --exclude='private/' \
+            --exclude='templates/' \
+            vault/ content/
+
+          rm -rf vault
 
       - uses: actions/setup-node@v6
         with:
@@ -62,6 +93,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
