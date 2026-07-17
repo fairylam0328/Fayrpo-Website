@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: en-US
-baseUrl: fairylam0328.github.io/Fayrpo-Website
+  baseUrl: fairylam0328.github.io/Fayrpo-Website
   ignorePatterns:
     - private
     - templates
