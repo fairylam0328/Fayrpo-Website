@@ -18,7 +18,10 @@ tags:
 > 此世界依靠法則錯亂的互相抵消而運行，請勿修復。
 
 本頁只負責導航。詳細設定收錄於個別條目。
-另見[[A Planeswalker's Guidr to Fayrpo]]
+另見[[A Planeswalker's Guide to Fayrpo]]
+
+角色設定相關：[[法爾朴國家背景能力]]
+
 
 ---
 
