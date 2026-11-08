@@ -8,7 +8,7 @@ echo   正在同步法爾朴 Obsidian Vault
 echo ========================================
 echo.
 
-robocopy "H:\我的雲端硬碟\Fayrpo" "%~dp0content" *.* /E /PURGE ^
+robocopy "G:\我的雲端硬碟\Fayrpo" "%~dp0content" *.* /E /PURGE ^
   /XD ".obsidian" ".trash" ".git" ^
   /XF "desktop.ini" "Thumbs.db"
 
@@ -17,7 +17,7 @@ set ROBOCOPY_EXIT=%ERRORLEVEL%
 if %ROBOCOPY_EXIT% GEQ 8 (
     echo.
     echo [失敗] 複製檔案時發生錯誤，代碼：%ROBOCOPY_EXIT%
-    echo 請確認 Google Drive H: 槽已連接。
+    echo 請確認 Google Drive G: 槽已連接。
     pause
     exit /b %ROBOCOPY_EXIT%
 )
